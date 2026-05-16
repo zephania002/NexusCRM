@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>NexusCRM v4 — Universal CRM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <span class="logo-mark">N</span>
+    <span class="logo-text">NexusCRM</span>
+    <span class="logo-v4">v4</span>
+  </div>
+  <nav class="sidebar-nav">
+    <a class="nav-item active" data-page="dashboard"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="7" height="7" rx="1.5"/><rect x="11" y="2" width="7" height="7" rx="1.5"/><rect x="2" y="11" width="7" height="7" rx="1.5"/><rect x="11" y="11" width="7" height="7" rx="1.5"/></svg><span>Dashboard</span></a>
+    <a class="nav-item" data-page="ai"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="3"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2"/><path d="M4.22 4.22l1.42 1.42M14.36 14.36l1.42 1.42M4.22 15.78l1.42-1.42M14.36 5.64l1.42-1.42"/></svg><span>AI Assistant</span></a>
+    <a class="nav-item" data-page="contacts"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="7" r="3.5"/><path d="M3 17c0-3.866 3.134-7 7-7s7 3.134 7 7"/></svg><span>Contacts</span><span class="nav-badge" id="navContactCount">0</span></a>
+    <a class="nav-item" data-page="pipeline"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 5h4v10H2zM8 8h4v7H8zM14 3h4v12h-4z"/></svg><span>Pipeline</span></a>
+    <a class="nav-item" data-page="messaging"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h16v10a2 2 0 01-2 2H4a2 2 0 01-2-2V4z"/><path d="M6 16l-3 3v-3"/></svg><span>Messaging</span></a>
+    <div class="nav-section-label">Sales</div>
+    <a class="nav-item" data-page="proposals"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="2" width="14" height="16" rx="2"/><line x1="7" y1="7" x2="13" y2="7"/><line x1="7" y1="10" x2="13" y2="10"/><line x1="7" y1="13" x2="10" y2="13"/></svg><span>Proposals</span><span class="nav-badge" id="navPropCount"></span></a>
+    <a class="nav-item" data-page="invoices"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="5" width="16" height="11" rx="2"/><line x1="2" y1="9" x2="18" y2="9"/></svg><span>Invoices</span></a>
+    <a class="nav-item" data-page="contracts"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2h8l4 4v12a2 2 0 01-2 2H4a2 2 0 01-2-2V4a2 2 0 012-2z"/><polyline points="14,2 14,8 20,8"/></svg><span>Contracts</span></a>
+    <div class="nav-section-label">Operations</div>
+    <a class="nav-item" data-page="projects"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="16" height="14" rx="2"/><line x1="2" y1="8" x2="18" y2="8"/><line x1="6" y1="12" x2="10" y2="12"/><line x1="6" y1="15" x2="9" y2="15"/></svg><span>Projects</span></a>
+    <a class="nav-item" data-page="helpdesk"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="8"/><path d="M10 6v4l3 3"/></svg><span>Help Desk</span><span class="nav-badge" id="navTicketCount"></span></a>
+    <a class="nav-item" data-page="finance"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="2" x2="12" y2="18"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg><span>Finance</span></a>
+    <div class="nav-section-label">Marketing</div>
+    <a class="nav-item" data-page="campaigns"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h12v8H4z"/><path d="M2 12l2-8"/><path d="M18 12l-2-8"/><path d="M4 12l4 4 4-4"/></svg><span>Campaigns</span></a>
+    <a class="nav-item" data-page="automation"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l4 4-4 4"/><path d="M4 6h12"/><path d="M8 18l-4-4 4-4"/><path d="M16 14H4"/></svg><span>Automation</span></a>
+    <a class="nav-item" data-page="templates"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h12v3H4zM4 9h8v2H4zM4 13h6v2H4z"/></svg><span>Templates</span></a>
+    <a class="nav-item" data-page="reminders"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="7"/><polyline points="10,6 10,10 13,12"/></svg><span>Reminders</span><span class="nav-badge" id="navRemCount"></span></a>
+    <div class="nav-section-label">Insights</div>
+    <a class="nav-item" data-page="analytics"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="2,14 7,9 11,12 18,5"/></svg><span>Analytics</span></a>
+    <a class="nav-item" data-page="team"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="3"/><circle cx="14" cy="7" r="3"/><path d="M1 17c0-3 2.686-5 6-5"/><path d="M8 17c0-3 2.686-5 6-5s6 2 6 5"/></svg><span>Team</span></a>
+    <div class="nav-section-label">Settings</div>
+    <a class="nav-item" data-page="billing"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="5" width="16" height="11" rx="2"/><line x1="2" y1="9" x2="18" y2="9"/></svg><span>Billing</span></a>
+    <a class="nav-item admin-only" data-page="admin" style="display:none"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="3"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.22 4.22l1.42 1.42M14.36 14.36l1.42 1.42M4.22 15.78l1.42-1.42M14.36 5.64l1.42-1.42"/></svg><span>Admin</span></a>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="user-pill" id="userPill">
+      <div class="user-avatar" id="sidebarAvatar">?</div>
+      <div class="user-info"><div class="user-name" id="sidebarName">Loading…</div><div class="user-role" id="sidebarRole">—</div></div>
+    </div>
+    <button class="logout-btn" id="logoutBtn" title="Sign out"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 3H4a1 1 0 00-1 1v12a1 1 0 001 1h4M13 14l4-4-4-4M17 10H7"/></svg></button>
+  </div>
+</aside>
+
+<main class="main">
+  <header class="topbar">
+    <div class="topbar-left">
+      <button class="menu-toggle" id="menuToggle"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="2" y1="5" x2="18" y2="5"/><line x1="2" y1="10" x2="18" y2="10"/><line x1="2" y1="15" x2="18" y2="15"/></svg></button>
+      <div class="page-title" id="pageTitle">Dashboard</div>
+      <span class="plan-chip" id="planChip">starter</span>
+    </div>
+    <div class="topbar-right">
+      <div class="topbar-time" id="topbarTime"></div>
+      <button class="icon-topbar" id="themeToggle"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="10" y1="16" x2="10" y2="18"/><line x1="2" y1="10" x2="4" y2="10"/><line x1="16" y1="10" x2="18" y2="10"/></svg></button>
+      <div class="icon-topbar"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 2a6 6 0 016 6v3l1.5 2.5H2.5L4 11V8a6 6 0 016-6z"/><path d="M8 16a2 2 0 004 0"/></svg><span class="notif-dot"></span></div>
+    </div>
+  </header>
+
+  <!-- DASHBOARD -->
+  <div class="page active" id="page-dashboard">
+    <div class="page-inner">
+      <div class="section-header"><h2>Overview</h2><span class="section-sub" id="dashGreeting">—</span></div>
+      <div class="kpi-grid">
+        <div class="kpi-card" data-color="blue"><div class="kpi-label">Contacts</div><div class="kpi-value" id="kpiContacts">—</div><div class="kpi-delta" id="kpiLeadsDelta">—</div></div>
+        <div class="kpi-card" data-color="green"><div class="kpi-label">Revenue</div><div class="kpi-value" id="kpiRevenue">—</div><div class="kpi-delta up">Paid invoices</div></div>
+        <div class="kpi-card" data-color="amber"><div class="kpi-label">Pipeline</div><div class="kpi-value" id="kpiPipeline">—</div><div class="kpi-delta">Open deals</div></div>
+        <div class="kpi-card" data-color="purple"><div class="kpi-label">Open Tickets</div><div class="kpi-value" id="kpiTickets">—</div><div class="kpi-delta">Support</div></div>
+        <div class="kpi-card" data-color="teal"><div class="kpi-label">Projects</div><div class="kpi-value" id="kpiProjects">—</div><div class="kpi-delta">Active</div></div>
+        <div class="kpi-card" data-color="coral"><div class="kpi-label">Contracts</div><div class="kpi-value" id="kpiContracts">—</div><div class="kpi-delta">Signed</div></div>
+        <div class="kpi-card" data-color="red"><div class="kpi-label">Expenses</div><div class="kpi-value" id="kpiExpenses">—</div><div class="kpi-delta">This period</div></div>
+        <div class="kpi-card" data-color="blue"><div class="kpi-label">Reminders</div><div class="kpi-value" id="kpiReminders">—</div><div class="kpi-delta">Due soon</div></div>
+      </div>
+      <div class="dash-grid">
+        <div class="dash-panel"><div class="panel-header"><span class="panel-title">Recent Contacts</span><a class="panel-link" data-page="contacts">All →</a></div><div id="recentContacts"></div></div>
+        <div class="dash-panel"><div class="panel-header"><span class="panel-title">Status Breakdown</span></div><div id="statusChart" class="status-chart"></div></div>
+        <div class="dash-panel wide"><div class="panel-header"><span class="panel-title">🤖 AI Follow-up Briefing</span><a class="panel-link" data-page="ai">Open AI Chat →</a></div><div id="aiBriefing"></div></div>
+        <div class="dash-panel wide"><div class="panel-header"><span class="panel-title">Recent Activity</span></div><div id="activityFeed" class="activity-feed"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI ASSISTANT -->
+  <div class="page" id="page-ai">
+    <div class="page-inner">
+      <div class="section-header"><h2>AI Assistant</h2><button class="btn-ghost" id="clearAiBtn">Clear chat</button></div>
+      <div class="ai-chat-wrap">
+        <div class="ai-thread" id="aiThread">
+          <div class="ai-msg assistant"><div class="ai-msg-av">🤖</div><div class="ai-msg-content">Hi! I'm your NexusCRM AI Assistant. I can help you analyze your contacts, pipeline, revenue, and suggest next actions. Ask me anything about your CRM data!</div></div>
+        </div>
+        <div class="ai-input-row">
+          <input class="ai-input" id="aiInput" placeholder="Ask about your contacts, pipeline, revenue, what to do next…"/>
+          <button class="ai-send" id="aiSend">Send →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACTS -->
+  <div class="page" id="page-contacts">
+    <div class="page-inner">
+      <div class="section-header"><h2>Contacts</h2><button class="btn-primary" id="addContactBtn">+ Add Contact</button></div>
+      <div class="toolbar">
+        <div class="search-wrap"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6.5" cy="6.5" r="4.5"/><line x1="10" y1="10" x2="14" y2="14"/></svg><input type="text" id="searchInput" placeholder="Search…"/></div>
+        <select id="filterStatus" class="filter-select"><option value="">All statuses</option><option>Lead</option><option>Client</option><option>Partner</option><option>Churned</option></select>
+        <button class="btn-ghost" id="exportBtn"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v9M4 8l4 4 4-4M2 14h12"/></svg>CSV</button>
+      </div>
+      <div class="table-wrap">
+        <table class="contacts-table"><thead><tr><th>Name</th><th>Company</th><th>Status</th><th>Deal</th><th style="width:120px">Score</th><th>Actions</th></tr></thead><tbody id="tableBody"></tbody></table>
+        <div class="empty-state" id="emptyState" style="display:none"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="24" cy="20" r="9"/><path d="M6 42c0-9.941 8.059-18 18-18s18 8.059 18 18"/></svg><p>No contacts found</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PIPELINE -->
+  <div class="page" id="page-pipeline">
+    <div class="page-inner">
+      <div class="section-header"><h2>Pipeline</h2><span class="section-sub">Drag cards between stages</span></div>
+      <div class="kanban-board" id="kanbanBoard"></div>
+    </div>
+  </div>
+
+  <!-- MESSAGING -->
+  <div class="page" id="page-messaging">
+    <div class="page-inner messaging-layout">
+      <div class="section-header"><h2>Messaging</h2><span class="section-sub">WhatsApp · Email · SMS · Notes</span></div>
+      <div class="msg-shell">
+        <div class="msg-sidebar">
+          <div class="msg-search"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6.5" cy="6.5" r="4.5"/><line x1="10" y1="10" x2="14" y2="14"/></svg><input type="text" id="msgSearch" placeholder="Search contacts…"/></div>
+          <div class="msg-contact-list" id="msgContactList"></div>
+        </div>
+        <div class="msg-main" id="msgMain">
+          <div class="msg-empty" id="msgEmpty"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1"><path d="M4 8h40v24a2 2 0 01-2 2H6a2 2 0 01-2-2V8z"/><path d="M4 8l20 14L44 8"/></svg><p>Select a contact to start messaging</p></div>
+          <div id="msgChat" style="display:none;flex-direction:column;height:100%">
+            <div class="msg-header" id="msgHeader"></div>
+            <div class="msg-thread" id="msgThread"></div>
+            <div class="msg-compose" id="msgCompose"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROPOSALS -->
+  <div class="page" id="page-proposals">
+    <div class="page-inner">
+      <div class="section-header"><h2>Proposals</h2><button class="btn-primary" id="addProposalBtn">+ New Proposal</button></div>
+      <div class="table-wrap"><table class="contacts-table"><thead><tr><th style="width:12%">Number</th><th style="width:22%">Title</th><th style="width:18%">Contact</th><th style="width:10%">Status</th><th style="width:12%">Total</th><th style="width:12%">Valid Until</th><th>Actions</th></tr></thead><tbody id="proposalBody"></tbody></table></div>
+    </div>
+  </div>
+
+  <!-- INVOICES -->
+  <div class="page" id="page-invoices">
+    <div class="page-inner">
+      <div class="section-header"><h2>Invoices</h2><button class="btn-primary" id="addInvoiceBtn">+ New Invoice</button></div>
+      <div class="toolbar">
+        <div class="search-wrap"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6.5" cy="6.5" r="4.5"/><line x1="10" y1="10" x2="14" y2="14"/></svg><input type="text" id="invSearch" placeholder="Search…"/></div>
+        <select id="invFilterStatus" class="filter-select"><option value="">All</option><option>draft</option><option>sent</option><option>paid</option><option>overdue</option></select>
+      </div>
+      <div class="table-wrap"><table class="contacts-table"><thead><tr><th style="width:14%">Invoice #</th><th style="width:22%">Contact</th><th style="width:11%">Status</th><th style="width:13%">Total</th><th style="width:14%">Due Date</th><th>Actions</th></tr></thead><tbody id="invoiceBody"></tbody></table></div>
+    </div>
+  </div>
+
+  <!-- CONTRACTS -->
+  <div class="page" id="page-contracts">
+    <div class="page-inner">
+      <div class="section-header"><h2>Contracts</h2><button class="btn-primary" id="addContractBtn">+ New Contract</button></div>
+      <div class="table-wrap"><table class="contacts-table"><thead><tr><th style="width:13%">Number</th><th style="width:24%">Title</th><th style="width:18%">Contact</th><th style="width:10%">Status</th><th style="width:12%">Value</th><th style="width:13%">End Date</th><th>Actions</th></tr></thead><tbody id="contractBody"></tbody></table></div>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <div class="page" id="page-projects">
+    <div class="page-inner">
+      <div class="section-header"><h2>Projects</h2><button class="btn-primary" id="addProjectBtn">+ New Project</button></div>
+      <div class="projects-grid" id="projectsGrid"></div>
+    </div>
+  </div>
+
+  <!-- HELP DESK -->
+  <div class="page" id="page-helpdesk">
+    <div class="page-inner">
+      <div class="section-header"><h2>Help Desk</h2><button class="btn-primary" id="addTicketBtn">+ New Ticket</button></div>
+      <div class="toolbar">
+        <div class="search-wrap"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6.5" cy="6.5" r="4.5"/><line x1="10" y1="10" x2="14" y2="14"/></svg><input type="text" id="ticketSearch" placeholder="Search tickets…"/></div>
+        <select id="ticketFilterStatus" class="filter-select"><option value="">All</option><option value="open">Open</option><option value="in_progress">In Progress</option><option value="resolved">Resolved</option></select>
+        <select id="ticketFilterPriority" class="filter-select"><option value="">All priorities</option><option value="high">High</option><option value="medium">Medium</option><option value="low">Low</option></select>
+      </div>
+      <div class="table-wrap"><table class="contacts-table"><thead><tr><th style="width:12%">Ticket #</th><th style="width:28%">Subject</th><th style="width:16%">Contact</th><th style="width:10%">Priority</th><th style="width:12%">Status</th><th style="width:12%">Created</th><th>Actions</th></tr></thead><tbody id="ticketBody"></tbody></table></div>
+    </div>
+  </div>
+
+  <!-- FINANCE -->
+  <div class="page" id="page-finance">
+    <div class="page-inner">
+      <div class="section-header"><h2>Finance</h2><button class="btn-primary" id="addExpenseBtn">+ Log Expense</button></div>
+      <div class="finance-grid" id="financeCards"></div>
+      <div class="section-header" style="margin-top:8px"><h2 style="font-size:18px">Expenses</h2></div>
+      <div class="table-wrap"><table class="contacts-table"><thead><tr><th style="width:30%">Description</th><th style="width:15%">Category</th><th style="width:12%">Amount</th><th style="width:13%">Date</th><th style="width:12%">Status</th><th>Actions</th></tr></thead><tbody id="expenseBody"></tbody></table></div>
+    </div>
+  </div>
+
+  <!-- CAMPAIGNS -->
+  <div class="page" id="page-campaigns">
+    <div class="page-inner">
+      <div class="section-header"><h2>Email Campaigns</h2><button class="btn-primary" id="addCampaignBtn">+ New Campaign</button></div>
+      <div id="campaignsList"></div>
+    </div>
+  </div>
+
+  <!-- AUTOMATION -->
+  <div class="page" id="page-automation">
+    <div class="page-inner">
+      <div class="section-header"><h2>Automation Flows</h2><button class="btn-primary" id="addFlowBtn">+ New Flow</button></div>
+      <div class="table-wrap"><table class="contacts-table"><thead><tr><th style="width:24%">Name</th><th style="width:18%">Trigger</th><th style="width:12%">Status</th><th style="width:12%">Runs</th><th>Actions</th></tr></thead><tbody id="flowBody"></tbody></table></div>
+    </div>
+  </div>
+
+  <!-- TEMPLATES -->
+  <div class="page" id="page-templates">
+    <div class="page-inner">
+      <div class="section-header"><h2>Message Templates</h2><button class="btn-primary" id="addTemplateBtn">+ New Template</button></div>
+      <div class="templates-grid" id="templatesGrid"></div>
+    </div>
+  </div>
+
+  <!-- REMINDERS -->
+  <div class="page" id="page-reminders">
+    <div class="page-inner">
+      <div class="section-header"><h2>Reminders</h2><button class="btn-primary" id="addReminderBtn">+ Set Reminder</button></div>
+      <div class="table-wrap"><table class="contacts-table"><thead><tr><th style="width:20%">Contact</th><th style="width:10%">Channel</th><th style="width:28%">Message</th><th style="width:14%">Due</th><th style="width:10%">Status</th><th>Actions</th></tr></thead><tbody id="remindersBody"></tbody></table></div>
+    </div>
+  </div>
+
+  <!-- ANALYTICS -->
+  <div class="page" id="page-analytics">
+    <div class="page-inner">
+      <div class="section-header"><h2>Analytics</h2><span class="section-sub">Live data</span></div>
+      <div class="analytics-grid" id="analyticsGrid"></div>
+    </div>
+  </div>
+
+  <!-- TEAM -->
+  <div class="page" id="page-team">
+    <div class="page-inner">
+      <div class="section-header"><h2>Team Dashboard</h2><span class="section-sub">Performance this week</span></div>
+      <div class="team-grid" id="teamGrid"></div>
+    </div>
+  </div>
+
+  <!-- BILLING -->
+  <div class="page" id="page-billing">
+    <div class="page-inner">
+      <div class="section-header"><h2>Billing & Plans</h2><span class="section-sub" id="billingSubtitle">—</span></div>
+      <div class="plans-grid" id="plansGrid"></div>
+      <div class="dash-panel" style="margin-bottom:12px"><div class="panel-header"><span class="panel-title">Stripe Portal</span></div><div style="padding:16px 18px"><p style="font-size:13px;color:var(--text-secondary);margin-bottom:12px">Manage payments, receipts and subscriptions.</p><button class="btn-ghost" id="stripePortalBtn">Open Stripe Portal →</button></div></div>
+      <div class="dash-panel"><div class="panel-header"><span class="panel-title">Zapier Webhooks</span><button class="btn-ghost" id="addWebhookBtn" style="font-size:12px;padding:4px 10px">+ Add</button></div><div id="webhookList"></div></div>
+    </div>
+  </div>
+
+  <!-- ADMIN -->
+  <div class="page" id="page-admin">
+    <div class="page-inner">
+      <div class="section-header"><h2>Admin Panel</h2><button class="btn-primary" id="addUserBtn">+ Add User</button></div>
+      <div class="admin-grid">
+        <div class="dash-panel full"><div class="panel-header"><span class="panel-title">Team Members</span></div><table class="user-table"><thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Last Login</th><th>Actions</th></tr></thead><tbody id="userBody"></tbody></table></div>
+        <div class="dash-panel"><div class="panel-header"><span class="panel-title">Integrations</span></div><div id="integrationList"></div></div>
+        <div class="dash-panel"><div class="panel-header"><span class="panel-title">White-Label Branding</span></div><div style="padding:16px 18px" id="brandingForm"></div></div>
+        <div class="dash-panel"><div class="panel-header"><span class="panel-title">Client Portal Invite</span></div><div style="padding:16px 18px"><p style="font-size:13px;color:var(--text-secondary);margin-bottom:12px">Give a client access to view their invoices, proposals and contracts.</p><div id="portalInviteWrap"></div></div></div>
+        <div class="dash-panel"><div class="panel-header"><span class="panel-title">SMTP / Email Config</span></div><div style="padding:16px 18px"><div class="env-block">SMTP_HOST=smtp.gmail.com<br>SMTP_PORT=587<br>SMTP_USER=you@gmail.com<br>SMTP_PASS=app-password<br>SMTP_FROM="NexusCRM &lt;you@gmail.com&gt;"</div></div></div>
+        <div class="dash-panel"><div class="panel-header"><span class="panel-title">WhatsApp Business API</span></div><div style="padding:16px 18px"><p style="font-size:13px;color:var(--text-secondary);margin-bottom:10px">Set in .env to enable two-way WhatsApp:</p><div class="env-block">WHATSAPP_API_TOKEN=EAAxxxxx<br>WHATSAPP_PHONE_ID=12345678<br>WHATSAPP_VERIFY_TOKEN=mytoken<br>ANTHROPIC_API_KEY=sk-ant-xxx</div></div></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- SLIDE-OVER -->
+<div class="overlay" id="overlay"></div>
+<div class="slideover" id="slideover">
+  <div class="so-header"><div class="so-avatar" id="soAvatar"></div><div><div class="so-name" id="soName">—</div><div class="so-role" id="soRole">—</div></div><button class="so-close" id="soClose">✕</button></div>
+  <div class="so-body" id="soBody"></div>
+  <div class="so-footer" id="soFooter"></div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" style="display:none">
+  <div class="modal"><div class="modal-header"><div class="modal-title" id="modalTitle">—</div><button class="so-close" id="modalClose">✕</button></div><div class="modal-body" id="modalBody"></div><div class="modal-footer" id="modalFooter"></div></div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>NexusCRM — Client Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#0b0d12;--surface:#13161e;--elevated:#1a1e29;--hover:#1f2433;--text:#f0f2f7;--muted:#8892a4;--dim:#4e5768;--border:rgba(255,255,255,0.07);--blue:#3b82f6;--green:#22c55e;--amber:#f59e0b;--red:#ef4444;--purple:#a855f7;--r:10px}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+    .bg-grid{position:fixed;inset:0;background-image:linear-gradient(rgba(59,130,246,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(59,130,246,0.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
+    .wrap{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:28px 20px}
+
+    /* Header */
+    .portal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:12px}
+    .logo-row{display:flex;align-items:center;gap:10px}
+    .logo-mark{width:34px;height:34px;background:var(--blue);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:18px;color:#fff}
+    .logo-text{font-size:15px;font-weight:600;letter-spacing:-.02em}
+    .portal-badge{font-size:11px;background:rgba(59,130,246,0.15);color:#60a5fa;border:1px solid rgba(59,130,246,0.25);padding:3px 10px;border-radius:20px;font-weight:500}
+    .client-name{font-family:'DM Serif Display',serif;font-size:28px;font-weight:400;letter-spacing:-.02em;margin-bottom:4px}
+    .client-meta{font-size:13px;color:var(--muted)}
+
+    /* Loading / Error */
+    .loader{text-align:center;padding:80px 20px;color:var(--muted)}
+    .loader-spin{width:32px;height:32px;border:2px solid var(--border);border-top-color:var(--blue);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 16px}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .error-state{text-align:center;padding:80px 20px}
+    .error-state svg{width:48px;height:48px;stroke:var(--dim);margin-bottom:16px}
+    .error-state h2{font-size:20px;margin-bottom:8px}
+    .error-state p{color:var(--muted);font-size:14px}
+
+    /* Summary cards */
+    .summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}
+    .sum-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px;position:relative;overflow:hidden}
+    .sum-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:var(--r) var(--r) 0 0}
+    .sum-card.blue::before{background:var(--blue)}
+    .sum-card.green::before{background:var(--green)}
+    .sum-card.amber::before{background:var(--amber)}
+    .sum-label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--dim);margin-bottom:8px}
+    .sum-val{font-family:'DM Serif Display',serif;font-size:30px;letter-spacing:-.02em;line-height:1}
+
+    /* Sections */
+    .section{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:16px}
+    .section-header{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+    .section-title{font-size:13px;font-weight:500}
+    .section-count{font-size:12px;color:var(--muted);background:var(--elevated);padding:2px 9px;border-radius:20px}
+
+    /* Table */
+    table{width:100%;border-collapse:collapse}
+    thead th{background:var(--elevated);padding:9px 16px;text-align:left;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.07em;color:var(--dim);border-bottom:1px solid var(--border)}
+    tbody tr{border-bottom:1px solid var(--border);transition:background .15s}
+    tbody tr:last-child{border-bottom:none}
+    tbody tr:hover{background:var(--hover)}
+    td{padding:12px 16px;font-size:13px}
+
+    /* Badges */
+    .badge{display:inline-block;font-size:11px;font-weight:500;padding:2px 9px;border-radius:20px}
+    .badge-paid{background:rgba(34,197,94,0.12);color:var(--green)}
+    .badge-sent{background:rgba(59,130,246,0.14);color:var(--blue)}
+    .badge-draft{background:rgba(255,255,255,0.06);color:var(--muted)}
+    .badge-overdue{background:rgba(239,68,68,0.12);color:var(--red)}
+    .badge-accepted{background:rgba(34,197,94,0.12);color:var(--green)}
+    .badge-declined{background:rgba(239,68,68,0.12);color:var(--red)}
+
+    /* Invoice expand */
+    .inv-items{display:none;padding:12px 16px;background:var(--elevated);border-top:1px solid var(--border)}
+    .inv-items.open{display:block}
+    .inv-items table{margin-top:0}
+    .inv-items thead th{background:transparent;font-size:10px}
+    .inv-items td{padding:6px 10px;font-size:12px;color:var(--muted)}
+    .inv-total{text-align:right;font-size:13px;font-weight:600;color:var(--text);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+    .expand-btn{background:transparent;border:none;color:var(--blue);font-size:12px;cursor:pointer;padding:0}
+    .expand-btn:hover{text-decoration:underline}
+
+    /* Empty */
+    .empty{padding:32px;text-align:center;color:var(--dim);font-size:13px}
+
+    /* Footer */
+    .portal-footer{text-align:center;margin-top:32px;font-size:12px;color:var(--dim)}
+    .portal-footer a{color:var(--blue);text-decoration:none}
+
+    @media(max-width:600px){.summary-grid{grid-template-columns:1fr 1fr}.sum-card:last-child{grid-column:1/-1}th:nth-child(3),td:nth-child(3){display:none}}
+  </style>
+</head>
+<body>
+<div class="bg-grid"></div>
+<div class="wrap">
+  <div class="portal-header">
+    <div class="logo-row">
+      <div class="logo-mark">N</div>
+      <div class="logo-text">NexusCRM</div>
+      <span class="portal-badge">Client Portal</span>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div class="loader" id="loader">
+    <div class="loader-spin"></div>
+    <p>Loading your portal…</p>
+  </div>
+
+  <!-- Error -->
+  <div class="error-state" id="errorState" style="display:none">
+    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="24" cy="24" r="20"/><line x1="24" y1="16" x2="24" y2="26"/><circle cx="24" cy="33" r="1.5" fill="currentColor"/></svg>
+    <h2>Access Denied</h2>
+    <p id="errorMsg">This portal link is invalid or has expired.<br>Please contact your account manager for a new link.</p>
+  </div>
+
+  <!-- Main content -->
+  <div id="portalContent" style="display:none">
+    <div style="margin-bottom:24px">
+      <div class="client-name" id="clientName">—</div>
+      <div class="client-meta" id="clientMeta">—</div>
+    </div>
+
+    <!-- Summary -->
+    <div class="summary-grid">
+      <div class="sum-card blue">
+        <div class="sum-label">Total Invoiced</div>
+        <div class="sum-val" id="sumTotal">$0</div>
+      </div>
+      <div class="sum-card green">
+        <div class="sum-label">Amount Paid</div>
+        <div class="sum-val" id="sumPaid">$0</div>
+      </div>
+      <div class="sum-card amber">
+        <div class="sum-label">Outstanding</div>
+        <div class="sum-val" id="sumOwed">$0</div>
+      </div>
+    </div>
+
+    <!-- Invoices -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-title">Invoices</span>
+        <span class="section-count" id="invCount">0</span>
+      </div>
+      <div id="invoicesWrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Invoice #</th>
+              <th>Status</th>
+              <th>Due Date</th>
+              <th>Total</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="invoiceRows"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Proposals -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-title">Proposals</span>
+        <span class="section-count" id="propCount">0</span>
+      </div>
+      <div id="proposalsWrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Proposal #</th>
+              <th>Title</th>
+              <th>Valid Until</th>
+              <th>Total</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="proposalRows"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="portal-footer">
+    Powered by <a href="#">NexusCRM</a> · Your data is private and secure
+  </div>
+</div>
+
+<script>
+  const $m = v => '$' + Number(v||0).toLocaleString('en-US',{minimumFractionDigits:0,maximumFractionDigits:0});
+  const $d = d => d ? new Date(d).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}) : '—';
+
+  async function loadPortal() {
+    const params = new URLSearchParams(window.location.search);
+    const token  = params.get('token');
+
+    if (!token) { showError('No portal token found in the URL.'); return; }
+
+    try {
+      const res  = await fetch(`/api/portal/data?token=${encodeURIComponent(token)}`);
+      const data = await res.json();
+      if (!res.ok) { showError(data.error || 'Access denied.'); return; }
+      render(data);
+    } catch {
+      showError('Could not connect to server. Please try again later.');
+    }
+  }
+
+  function showError(msg) {
+    document.getElementById('loader').style.display = 'none';
+    document.getElementById('errorMsg').innerHTML = msg;
+    document.getElementById('errorState').style.display = 'block';
+  }
+
+  function render({ contact, invoices, proposals }) {
+    document.getElementById('loader').style.display = 'none';
+    document.getElementById('portalContent').style.display = 'block';
+
+    document.getElementById('clientName').textContent = contact.name;
+    document.getElementById('clientMeta').textContent = `${contact.company || ''}${contact.company && contact.email ? ' · ' : ''}${contact.email || ''}`;
+    document.title = `${contact.name} — Client Portal`;
+
+    const totalInv = invoices.reduce((s,i) => s + (i.total||0), 0);
+    const paid     = invoices.filter(i=>i.status==='paid').reduce((s,i) => s + (i.total||0), 0);
+    document.getElementById('sumTotal').textContent = $m(totalInv);
+    document.getElementById('sumPaid').textContent  = $m(paid);
+    document.getElementById('sumOwed').textContent  = $m(totalInv - paid);
+    document.getElementById('invCount').textContent  = invoices.length;
+    document.getElementById('propCount').textContent = proposals.length;
+
+    // Invoices
+    const invBody = document.getElementById('invoiceRows');
+    if (!invoices.length) {
+      invBody.innerHTML = '<tr><td colspan="5" class="empty">No invoices yet</td></tr>';
+    } else {
+      invBody.innerHTML = invoices.map(inv => `
+        <tr>
+          <td style="font-weight:500">${inv.invoice_number}</td>
+          <td><span class="badge badge-${inv.status}">${inv.status}</span></td>
+          <td style="color:var(--muted)">${$d(inv.due_date)}</td>
+          <td style="font-weight:600">${$m(inv.total)}</td>
+          <td><button class="expand-btn" onclick="toggleItems('inv-${inv.id}')">View items</button></td>
+        </tr>
+        <tr>
+          <td colspan="5" style="padding:0">
+            <div class="inv-items" id="inv-${inv.id}">
+              <table>
+                <thead><tr><th>Description</th><th>Qty</th><th style="text-align:right">Price</th><th style="text-align:right">Total</th></tr></thead>
+                <tbody>${(inv.items||[]).map(it=>`<tr><td>${it.description}</td><td>${it.quantity}</td><td style="text-align:right">${$m(it.unit_price)}</td><td style="text-align:right">${$m(it.amount)}</td></tr>`).join('')}</tbody>
+              </table>
+              <div class="inv-total">Total: ${$m(inv.total)} ${inv.currency||'USD'}</div>
+            </div>
+          </td>
+        </tr>`).join('');
+    }
+
+    // Proposals
+    const propBody = document.getElementById('proposalRows');
+    if (!proposals.length) {
+      propBody.innerHTML = '<tr><td colspan="5" class="empty">No proposals yet</td></tr>';
+    } else {
+      propBody.innerHTML = proposals.map(p => `
+        <tr>
+          <td style="font-weight:500">${p.proposal_number}</td>
+          <td>${p.title}</td>
+          <td style="color:var(--muted)">${$d(p.valid_until)}</td>
+          <td style="font-weight:600">${$m(p.total)} ${p.currency||'USD'}</td>
+          <td><span class="badge badge-${p.status}">${p.status}</span></td>
+        </tr>`).join('');
+    }
+  }
+
+  function toggleItems(id) {
+    const el = document.getElementById(id);
+    el.classList.toggle('open');
+  }
+
+  loadPortal();
+</script>
+</body>
+</html>

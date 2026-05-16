@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>NexusCRM — Sign In</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--bg:#0b0d12;--surface:#13161e;--border:rgba(255,255,255,0.08);--text:#f0f2f7;--muted:#6b7585;--accent:#3b82f6;--error:#ef4444;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+    .bg-grid{position:fixed;inset:0;background-image:linear-gradient(rgba(59,130,246,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(59,130,246,0.04) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;}
+    .bg-glow{position:fixed;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(59,130,246,0.1) 0%,transparent 70%);top:-100px;left:-100px;pointer-events:none;animation:drift 12s ease-in-out infinite alternate;}
+    .bg-glow2{position:fixed;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(20,184,166,0.07) 0%,transparent 70%);bottom:-80px;right:-80px;pointer-events:none;animation:drift 16s ease-in-out infinite alternate-reverse;}
+    @keyframes drift{from{transform:translate(0,0)}to{transform:translate(40px,30px)}}
+    .card{position:relative;z-index:1;width:100%;max-width:420px;margin:20px;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:40px;box-shadow:0 24px 80px rgba(0,0,0,0.7);animation:slideUp .5s cubic-bezier(.4,0,.2,1) both;}
+    @keyframes slideUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+    .logo-row{display:flex;align-items:center;gap:12px;margin-bottom:32px;}
+    .logo-mark{width:40px;height:40px;background:var(--accent);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:22px;color:#fff;box-shadow:0 4px 20px rgba(59,130,246,0.4);}
+    .logo-text{font-size:18px;font-weight:600;letter-spacing:-.02em;}
+    .title{font-family:'DM Serif Display',serif;font-size:26px;font-weight:400;letter-spacing:-.02em;margin-bottom:6px;}
+    .sub{font-size:13px;color:var(--muted);margin-bottom:28px;}
+    .field{margin-bottom:16px;}
+    .field label{display:block;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:7px;}
+    .fw{position:relative;}
+    .fw svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);width:15px;height:15px;color:var(--muted);}
+    .fw input{width:100%;padding:11px 14px 11px 38px;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;outline:none;transition:border-color .15s;}
+    .fw input:focus{border-color:var(--accent);background:rgba(59,130,246,0.06);}
+    .fw input::placeholder{color:var(--muted);}
+    .show-pass{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:transparent;border:none;cursor:pointer;color:var(--muted);display:flex;align-items:center;padding:4px;}
+    .show-pass:hover{color:var(--text);}
+    .show-pass svg{width:15px;height:15px;}
+    .err{display:none;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);border-radius:8px;padding:10px 14px;font-size:13px;color:#fca5a5;margin-bottom:16px;}
+    .err.show{display:block;}
+    .btn{width:100%;padding:13px;background:var(--accent);color:#fff;border:none;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:opacity .15s;margin-top:6px;}
+    .btn:hover{opacity:.88;}
+    .btn:disabled{opacity:.5;cursor:not-allowed;}
+    .spin{width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;display:none;animation:spin .6s linear infinite;}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .footer{margin-top:24px;padding-top:20px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+    .hint{font-size:12px;color:var(--muted);}
+    .hint b{color:#60a5fa;font-weight:500;}
+    .vtag{font-size:11px;color:var(--muted);background:rgba(255,255,255,0.04);border:1px solid var(--border);padding:3px 9px;border-radius:20px;}
+  </style>
+</head>
+<body>
+<div class="bg-grid"></div>
+<div class="bg-glow"></div>
+<div class="bg-glow2"></div>
+<div class="card">
+  <div class="logo-row">
+    <div class="logo-mark">N</div>
+    <div class="logo-text">NexusCRM</div>
+  </div>
+  <h1 class="title">Welcome back.</h1>
+  <p class="sub">Sign in to your workspace</p>
+  <div class="err" id="err"></div>
+  <div class="field">
+    <label>Email</label>
+    <div class="fw">
+      <input type="email" id="email" placeholder="you@company.com" autocomplete="email"/>
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="16" height="12" rx="2"/><path d="M2 7l8 5 8-5"/></svg>
+    </div>
+  </div>
+  <div class="field">
+    <label>Password</label>
+    <div class="fw">
+      <input type="password" id="pass" placeholder="Your password" autocomplete="current-password"/>
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="8" width="14" height="10" rx="2"/><path d="M7 8V5a3 3 0 016 0v3"/></svg>
+      <button class="show-pass" id="showPass" type="button">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 10s3-6 9-6 9 6 9 6-3 6-9 6-9-6-9-6z"/><circle cx="10" cy="10" r="2.5"/></svg>
+      </button>
+    </div>
+  </div>
+  <button class="btn" id="loginBtn">
+    <span id="btnText">Sign In</span>
+    <div class="spin" id="spin"></div>
+  </button>
+  <div class="footer">
+    <div class="hint">Demo: <b>admin@nexuscrm.com</b></div>
+    <span class="vtag">v2.0 SaaS</span>
+  </div>
+</div>
+<script>
+  document.getElementById('showPass').onclick = () => {
+    const i = document.getElementById('pass');
+    i.type = i.type === 'password' ? 'text' : 'password';
+  };
+  document.getElementById('pass').onkeydown = e => { if(e.key==='Enter') login(); };
+  document.getElementById('email').onkeydown = e => { if(e.key==='Enter') document.getElementById('pass').focus(); };
+  document.getElementById('loginBtn').onclick = login;
+
+  async function login() {
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('pass').value;
+    const errEl = document.getElementById('err');
+    const btn = document.getElementById('loginBtn');
+    const spin = document.getElementById('spin');
+    const btnText = document.getElementById('btnText');
+    errEl.classList.remove('show');
+    if (!email || !password) { errEl.textContent='Enter email and password.'; errEl.classList.add('show'); return; }
+    btn.disabled=true; spin.style.display='block'; btnText.textContent='Signing in…';
+    try {
+      const res = await fetch('/api/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,password})});
+      const data = await res.json();
+      if (!res.ok) { errEl.textContent=data.error||'Login failed.'; errEl.classList.add('show'); return; }
+      localStorage.setItem('nexus_token', data.token);
+      localStorage.setItem('nexus_user', JSON.stringify(data.user));
+      localStorage.setItem('nexus_tenant', JSON.stringify(data.tenant));
+      window.location.href = '/index.html';
+    } catch { errEl.textContent='Cannot connect to server.'; errEl.classList.add('show'); }
+    finally { btn.disabled=false; spin.style.display='none'; btnText.textContent='Sign In'; }
+  }
+
+  if (localStorage.getItem('nexus_token')) window.location.href='/index.html';
+</script>
+</body>
+</html>

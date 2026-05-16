@@ -1,0 +1,707 @@
+{
+  "tenants": [
+    {
+      "id": 1778939553455,
+      "name": "Nexus Demo Org",
+      "slug": "nexus-demo",
+      "plan": "scale",
+      "sub_status": "trialing",
+      "trial_ends_at": "2026-05-30T13:52:33.456Z",
+      "seats_limit": 999,
+      "stripe_customer_id": null,
+      "stripe_sub_id": null,
+      "industry": "general",
+      "created_at": "2026-05-16T13:52:33.457Z"
+    }
+  ],
+  "users": [
+    {
+      "id": 1778939553456,
+      "tenant_id": 1778939553455,
+      "name": "Admin",
+      "email": "admin@nexuscrm.com",
+      "password": "$2a$10$H/tvNIhyGKXj..yfOIC9e.PjYHp9xSqZuzqLa4ntXccP0CbjtMXme",
+      "role": "admin",
+      "created_at": "2026-05-16T13:52:33.597Z",
+      "last_login": "2026-05-16T13:53:34.499Z"
+    },
+    {
+      "id": 1778939553457,
+      "tenant_id": 1778939553455,
+      "name": "Sales Rep",
+      "email": "user@nexuscrm.com",
+      "password": "$2a$10$ERYCI9XYNVz93MJX5X78iupV2V8zo4VnZQ0oyyuA/.OUZtjvazkEG",
+      "role": "user",
+      "created_at": "2026-05-16T13:52:33.727Z",
+      "last_login": null
+    }
+  ],
+  "contacts": [
+    {
+      "id": 1778939553458,
+      "tenant_id": 1778939553455,
+      "created_by": 1778939553456,
+      "created_at": "2026-05-16T13:52:33.728Z",
+      "updated_at": "2026-05-16T13:52:33.728Z",
+      "name": "Amara Osei",
+      "email": "amara@growthco.io",
+      "phone": "+254712000001",
+      "whatsapp": "+254712000001",
+      "company": "GrowthCo",
+      "title": "Head of Marketing",
+      "status": "Client",
+      "stage": "Proposal",
+      "deal": 42000,
+      "last_contact": "2025-04-28",
+      "notes": "Interested in enterprise plan."
+    },
+    {
+      "id": 1778939553459,
+      "tenant_id": 1778939553455,
+      "created_by": 1778939553456,
+      "created_at": "2026-05-16T13:52:33.729Z",
+      "updated_at": "2026-05-16T13:52:33.729Z",
+      "name": "David Mwangi",
+      "email": "d.mwangi@techbridge.ke",
+      "phone": "+254721000002",
+      "whatsapp": "+254721000002",
+      "company": "TechBridge",
+      "title": "CTO",
+      "status": "Lead",
+      "stage": "Qualified",
+      "deal": 18500,
+      "last_contact": "2025-04-15",
+      "notes": "Evaluating 3 CRM solutions."
+    },
+    {
+      "id": 1778939553460,
+      "tenant_id": 1778939553455,
+      "created_by": 1778939553456,
+      "created_at": "2026-05-16T13:52:33.730Z",
+      "updated_at": "2026-05-16T13:52:33.730Z",
+      "name": "Priya Sharma",
+      "email": "priya@nexadigital.com",
+      "phone": "+919876543210",
+      "whatsapp": "+919876543210",
+      "company": "Nexa Digital",
+      "title": "CEO",
+      "status": "Partner",
+      "stage": "Closed",
+      "deal": 75000,
+      "last_contact": "2025-05-01",
+      "notes": "Monthly sync scheduled."
+    },
+    {
+      "id": 1778939553461,
+      "tenant_id": 1778939553455,
+      "created_by": 1778939553456,
+      "created_at": "2026-05-16T13:52:33.731Z",
+      "updated_at": "2026-05-16T13:52:33.731Z",
+      "name": "Lior Ben-David",
+      "email": "lior@stacklabs.io",
+      "phone": "+97252000004",
+      "whatsapp": "+97252000004",
+      "company": "StackLabs",
+      "title": "Product Manager",
+      "status": "Lead",
+      "stage": "Lead",
+      "deal": 9800,
+      "last_contact": "2025-03-22",
+      "notes": "Needs CFO approval."
+    },
+    {
+      "id": 1778939553462,
+      "tenant_id": 1778939553455,
+      "created_by": 1778939553456,
+      "created_at": "2026-05-16T13:52:33.732Z",
+      "updated_at": "2026-05-16T13:52:33.732Z",
+      "name": "Chisom Eze",
+      "email": "chisom@luminarehq.com",
+      "phone": "+2348020000050",
+      "whatsapp": "+2348020000050",
+      "company": "Luminare HQ",
+      "title": "VP Sales",
+      "status": "Client",
+      "stage": "Closed",
+      "deal": 31200,
+      "last_contact": "2025-04-30",
+      "notes": "Upsell opportunity."
+    },
+    {
+      "id": 1778939553463,
+      "tenant_id": 1778939553455,
+      "created_by": 1778939553456,
+      "created_at": "2026-05-16T13:52:33.733Z",
+      "updated_at": "2026-05-16T13:52:33.733Z",
+      "name": "Sofia Reyes",
+      "email": "sofia@cloudvane.mx",
+      "phone": "+525500000006",
+      "whatsapp": "+525500000006",
+      "company": "CloudVane",
+      "title": "Ops Lead",
+      "status": "Churned",
+      "stage": "Lead",
+      "deal": 0,
+      "last_contact": "2025-02-10",
+      "notes": "Re-engage Q3."
+    }
+  ],
+  "messages": [],
+  "invoices": [
+    {
+      "id": 1778939553464,
+      "tenant_id": 1778939553455,
+      "created_by": 1778939553456,
+      "notes": "",
+      "created_at": "2026-05-16T13:52:33.734Z",
+      "updated_at": "2026-05-16T13:52:33.734Z",
+      "contact_id": 1778939553458,
+      "invoice_number": "INV-0001",
+      "status": "paid",
+      "subtotal": 42000,
+      "tax_rate": 16,
+      "tax_amount": 6720,
+      "total": 48720,
+      "due_date": "2025-04-15",
+      "currency": "USD",
+      "paid_at": "2026-05-16T13:52:33.734Z"
+    },
+    {
+      "id": 1778939553466,
+      "tenant_id": 1778939553455,
+      "created_by": 1778939553456,
+      "notes": "",
+      "created_at": "2026-05-16T13:52:33.735Z",
+      "updated_at": "2026-05-16T13:52:33.735Z",
+      "contact_id": 1778939553459,
+      "invoice_number": "INV-0002",
+      "status": "sent",
+      "subtotal": 18500,
+      "tax_rate": 16,
+      "tax_amount": 2960,
+      "total": 21460,
+      "due_date": "2025-05-30",
+      "currency": "USD",
+      "paid_at": null
+    },
+    {
+      "id": 1778939553468,
+      "tenant_id": 1778939553455,
+      "created_by": 1778939553456,
+      "notes": "",
+      "created_at": "2026-05-16T13:52:33.737Z",
+      "updated_at": "2026-05-16T13:52:33.737Z",
+      "contact_id": 1778939553460,
+      "invoice_number": "INV-0003",
+      "status": "paid",
+      "subtotal": 75000,
+      "tax_rate": 16,
+      "tax_amount": 12000,
+      "total": 87000,
+      "due_date": "2025-04-01",
+      "currency": "USD",
+      "paid_at": "2026-05-16T13:52:33.734Z"
+    }
+  ],
+  "invoice_items": [
+    {
+      "id": 1778939553465,
+      "invoice_id": 1778939553464,
+      "description": "Service",
+      "quantity": 1,
+      "unit_price": 42000,
+      "amount": 42000
+    },
+    {
+      "id": 1778939553467,
+      "invoice_id": 1778939553466,
+      "description": "Service",
+      "quantity": 1,
+      "unit_price": 18500,
+      "amount": 18500
+    },
+    {
+      "id": 1778939553469,
+      "invoice_id": 1778939553468,
+      "description": "Service",
+      "quantity": 1,
+      "unit_price": 75000,
+      "amount": 75000
+    }
+  ],
+  "integrations": [],
+  "webhooks": [],
+  "activity_log": [
+    {
+      "id": 1778939553509,
+      "tenant_id": 1778939553455,
+      "user_id": 1778939553456,
+      "contact_id": null,
+      "action": "login",
+      "details": "Logged in",
+      "created_at": "2026-05-16T13:53:34.501Z"
+    }
+  ],
+  "templates": [
+    {
+      "id": 1778939553470,
+      "tenant_id": 1778939553455,
+      "created_by": 1778939553456,
+      "name": "Introduction",
+      "channel": "email",
+      "subject": "Introduction from {{sender_name}}",
+      "body": "Hi {{name}},\n\nI'm {{sender_name}}. I wanted to reach out regarding {{company}}.\n\nWould you be open to a quick call?\n\n{{sender_name}}",
+      "created_at": "2026-05-16T13:52:33.739Z"
+    },
+    {
+      "id": 1778939553471,
+      "tenant_id": 1778939553455,
+      "created_by": 1778939553456,
+      "name": "Follow-up",
+      "channel": "email",
+      "subject": "Following up — {{company}}",
+      "body": "Hi {{name}},\n\nJust following up on our conversation about {{company}}.\n\nAre you still interested?\n\n{{sender_name}}",
+      "created_at": "2026-05-16T13:52:33.739Z"
+    },
+    {
+      "id": 1778939553472,
+      "tenant_id": 1778939553455,
+      "created_by": 1778939553456,
+      "name": "WhatsApp Intro",
+      "channel": "whatsapp",
+      "body": "Hi {{name}} 👋 This is {{sender_name}}. Would love to connect about {{company}}!",
+      "created_at": "2026-05-16T13:52:33.740Z"
+    }
+  ],
+  "reminders": [],
+  "proposals": [],
+  "proposal_items": [],
+  "portal_tokens": [],
+  "team_activity": [
+    {
+      "id": 1778939553505,
+      "tenant_id": 1778939553455,
+      "user_id": 1778939553456,
+      "user_name": "Admin",
+      "contacts_added": 6,
+      "messages_sent": 8,
+      "deals_closed": 2,
+      "revenue": 135000,
+      "emails_sent": 5,
+      "calls_logged": 4,
+      "tickets_resolved": 2,
+      "week_start": "2026-05-16",
+      "updated_at": "2026-05-16T13:52:33.771Z"
+    },
+    {
+      "id": 1778939553506,
+      "tenant_id": 1778939553455,
+      "user_id": 1778939553457,
+      "user_name": "Sales Rep",
+      "contacts_added": 0,
+      "messages_sent": 1,
+      "deals_closed": 0,
+      "revenue": 0,
+      "emails_sent": 0,
+      "calls_logged": 0,
+      "tickets_resolved": 0,
+      "week_start": "2026-05-16",
+      "updated_at": "2026-05-16T13:52:33.772Z"
+    }
+  ],
+  "projects": [
+    {
+      "id": 1778939553473,
+      "tenant_id": 1778939553455,
+      "name": "NexusCRM Onboarding",
+      "description": "Client onboarding project",
+      "contact_id": 1778939553458,
+      "status": "active",
+      "priority": "high",
+      "due_date": "2025-06-30",
+      "created_by": 1778939553456,
+      "created_at": "2026-05-16T13:52:33.741Z"
+    }
+  ],
+  "tasks": [
+    {
+      "id": 1778939553474,
+      "tenant_id": 1778939553455,
+      "project_id": 1778939553473,
+      "title": "Setup CRM workspace",
+      "status": "done",
+      "priority": "high",
+      "assigned_to": 1778939553456,
+      "due_date": "2025-05-10",
+      "description": "",
+      "created_at": "2026-05-16T13:52:33.742Z",
+      "updated_at": "2026-05-16T13:52:33.742Z"
+    },
+    {
+      "id": 1778939553475,
+      "tenant_id": 1778939553455,
+      "project_id": 1778939553473,
+      "title": "Import existing contacts",
+      "status": "in_progress",
+      "priority": "high",
+      "assigned_to": 1778939553456,
+      "due_date": "2025-05-15",
+      "description": "",
+      "created_at": "2026-05-16T13:52:33.743Z",
+      "updated_at": "2026-05-16T13:52:33.743Z"
+    },
+    {
+      "id": 1778939553476,
+      "tenant_id": 1778939553455,
+      "project_id": 1778939553473,
+      "title": "Train sales team",
+      "status": "todo",
+      "priority": "medium",
+      "assigned_to": 1778939553457,
+      "due_date": "2025-05-25",
+      "description": "",
+      "created_at": "2026-05-16T13:52:33.744Z",
+      "updated_at": "2026-05-16T13:52:33.744Z"
+    },
+    {
+      "id": 1778939553477,
+      "tenant_id": 1778939553455,
+      "project_id": 1778939553473,
+      "title": "Configure email integration",
+      "status": "todo",
+      "priority": "low",
+      "assigned_to": 1778939553457,
+      "due_date": "2025-06-01",
+      "description": "",
+      "created_at": "2026-05-16T13:52:33.745Z",
+      "updated_at": "2026-05-16T13:52:33.745Z"
+    }
+  ],
+  "task_comments": [],
+  "tickets": [
+    {
+      "id": 1778939553478,
+      "tenant_id": 1778939553455,
+      "contact_id": 1778939553458,
+      "subject": "Cannot access dashboard",
+      "body": "I keep getting a 403 error when logging in.",
+      "priority": "high",
+      "status": "open",
+      "assigned_to": 1778939553456,
+      "ticket_number": "TKT-0001",
+      "created_at": "2026-05-16T13:52:33.746Z",
+      "updated_at": "2026-05-16T13:52:33.746Z",
+      "resolved_at": null
+    },
+    {
+      "id": 1778939553479,
+      "tenant_id": 1778939553455,
+      "contact_id": 1778939553459,
+      "subject": "Invoice PDF not generating",
+      "body": "The download button does nothing.",
+      "priority": "medium",
+      "status": "in_progress",
+      "assigned_to": 1778939553456,
+      "ticket_number": "TKT-0002",
+      "created_at": "2026-05-16T13:52:33.747Z",
+      "updated_at": "2026-05-16T13:52:33.747Z",
+      "resolved_at": null
+    },
+    {
+      "id": 1778939553480,
+      "tenant_id": 1778939553455,
+      "contact_id": 1778939553462,
+      "subject": "Need to update billing details",
+      "body": "Our card expired, need to update.",
+      "priority": "low",
+      "status": "resolved",
+      "assigned_to": 1778939553457,
+      "ticket_number": "TKT-0003",
+      "created_at": "2026-05-16T13:52:33.748Z",
+      "updated_at": "2026-05-16T13:52:33.748Z",
+      "resolved_at": "2026-05-16T13:52:33.748Z"
+    }
+  ],
+  "ticket_messages": [],
+  "contracts": [
+    {
+      "id": 1778939553481,
+      "tenant_id": 1778939553455,
+      "created_by": 1778939553456,
+      "contact_id": 1778939553458,
+      "title": "Enterprise SaaS Agreement",
+      "value": 42000,
+      "status": "signed",
+      "start_date": "2025-01-01",
+      "end_date": "2025-12-31",
+      "auto_renew": true,
+      "contract_number": "CTR-0001",
+      "notes": "",
+      "created_at": "2026-05-16T13:52:33.749Z"
+    },
+    {
+      "id": 1778939553482,
+      "tenant_id": 1778939553455,
+      "created_by": 1778939553456,
+      "contact_id": 1778939553460,
+      "title": "Partnership Agreement",
+      "value": 75000,
+      "status": "signed",
+      "start_date": "2025-02-01",
+      "end_date": "2026-01-31",
+      "auto_renew": false,
+      "contract_number": "CTR-0002",
+      "notes": "",
+      "created_at": "2026-05-16T13:52:33.749Z"
+    },
+    {
+      "id": 1778939553483,
+      "tenant_id": 1778939553455,
+      "created_by": 1778939553456,
+      "contact_id": 1778939553459,
+      "title": "Pilot Agreement",
+      "value": 5000,
+      "status": "signed",
+      "start_date": "2025-06-01",
+      "end_date": "2025-08-31",
+      "auto_renew": false,
+      "contract_number": "CTR-0003",
+      "notes": "",
+      "created_at": "2026-05-16T13:52:33.750Z"
+    }
+  ],
+  "contract_items": [],
+  "expenses": [
+    {
+      "id": 1778939553490,
+      "tenant_id": 1778939553455,
+      "description": "Flight to Nairobi",
+      "amount": 450,
+      "category": "Travel",
+      "date": "2025-04-10",
+      "receipt": null,
+      "status": "approved",
+      "submitted_by": 1778939553456,
+      "created_at": "2026-05-16T13:52:33.756Z"
+    },
+    {
+      "id": 1778939553491,
+      "tenant_id": 1778939553455,
+      "description": "CRM hosting (Railway)",
+      "amount": 29,
+      "category": "Software",
+      "date": "2025-05-01",
+      "receipt": null,
+      "status": "approved",
+      "submitted_by": 1778939553456,
+      "created_at": "2026-05-16T13:52:33.757Z"
+    },
+    {
+      "id": 1778939553492,
+      "tenant_id": 1778939553455,
+      "description": "Google Ads campaign",
+      "amount": 350,
+      "category": "Marketing",
+      "date": "2025-04-15",
+      "receipt": null,
+      "status": "pending",
+      "submitted_by": 1778939553457,
+      "created_at": "2026-05-16T13:52:33.758Z"
+    }
+  ],
+  "expense_categories": [
+    {
+      "id": 1778939553484,
+      "tenant_id": 1778939553455,
+      "name": "Travel"
+    },
+    {
+      "id": 1778939553485,
+      "tenant_id": 1778939553455,
+      "name": "Software"
+    },
+    {
+      "id": 1778939553486,
+      "tenant_id": 1778939553455,
+      "name": "Marketing"
+    },
+    {
+      "id": 1778939553487,
+      "tenant_id": 1778939553455,
+      "name": "Office"
+    },
+    {
+      "id": 1778939553488,
+      "tenant_id": 1778939553455,
+      "name": "Meals"
+    },
+    {
+      "id": 1778939553489,
+      "tenant_id": 1778939553455,
+      "name": "Equipment"
+    }
+  ],
+  "campaigns": [
+    {
+      "id": 1778939553493,
+      "tenant_id": 1778939553455,
+      "name": "May Newsletter",
+      "subject": "What's new at NexusCRM",
+      "body": "<h2>Hello {{name}},</h2><p>Here's what's new this month...</p>",
+      "status": "sent",
+      "segment": "all",
+      "sent_at": "2026-05-16T13:52:33.759Z",
+      "opens": 3,
+      "clicks": 1,
+      "created_by": 1778939553456,
+      "created_at": "2026-05-16T13:52:33.759Z"
+    }
+  ],
+  "campaign_contacts": [
+    {
+      "id": 1778939553494,
+      "campaign_id": 1778939553493,
+      "contact_id": 1778939553458,
+      "opened": true,
+      "clicked": false,
+      "sent_at": "2026-05-16T13:52:33.760Z"
+    },
+    {
+      "id": 1778939553495,
+      "campaign_id": 1778939553493,
+      "contact_id": 1778939553459,
+      "opened": false,
+      "clicked": false,
+      "sent_at": "2026-05-16T13:52:33.761Z"
+    },
+    {
+      "id": 1778939553496,
+      "campaign_id": 1778939553493,
+      "contact_id": 1778939553460,
+      "opened": false,
+      "clicked": true,
+      "sent_at": "2026-05-16T13:52:33.761Z"
+    },
+    {
+      "id": 1778939553497,
+      "campaign_id": 1778939553493,
+      "contact_id": 1778939553461,
+      "opened": false,
+      "clicked": false,
+      "sent_at": "2026-05-16T13:52:33.762Z"
+    },
+    {
+      "id": 1778939553498,
+      "campaign_id": 1778939553493,
+      "contact_id": 1778939553462,
+      "opened": true,
+      "clicked": false,
+      "sent_at": "2026-05-16T13:52:33.763Z"
+    },
+    {
+      "id": 1778939553499,
+      "campaign_id": 1778939553493,
+      "contact_id": 1778939553463,
+      "opened": false,
+      "clicked": false,
+      "sent_at": "2026-05-16T13:52:33.764Z"
+    }
+  ],
+  "automation_flows": [
+    {
+      "id": 1778939553500,
+      "tenant_id": 1778939553455,
+      "name": "New Lead Welcome",
+      "trigger": "contact_created",
+      "conditions": "[{\"field\":\"status\",\"op\":\"eq\",\"value\":\"Lead\"}]",
+      "actions": "[{\"type\":\"send_email\",\"template\":\"Introduction\",\"delay_hours\":0},{\"type\":\"set_reminder\",\"days\":3,\"message\":\"Follow up with new lead\"}]",
+      "status": "active",
+      "run_count": 4,
+      "created_by": 1778939553456,
+      "created_at": "2026-05-16T13:52:33.765Z"
+    },
+    {
+      "id": 1778939553501,
+      "tenant_id": 1778939553455,
+      "name": "Cold Lead Re-engage",
+      "trigger": "no_contact_days",
+      "conditions": "[{\"field\":\"days\",\"op\":\"gte\",\"value\":14}]",
+      "actions": "[{\"type\":\"send_whatsapp\",\"template\":\"WhatsApp Intro\"},{\"type\":\"add_tag\",\"value\":\"needs-followup\"}]",
+      "status": "active",
+      "run_count": 2,
+      "created_by": 1778939553456,
+      "created_at": "2026-05-16T13:52:33.766Z"
+    }
+  ],
+  "automation_logs": [],
+  "live_chat_sessions": [],
+  "live_chat_messages": [],
+  "whatsapp_inbox": [
+    {
+      "id": 1778939553502,
+      "tenant_id": 1778939553455,
+      "contact_id": 1778939553458,
+      "direction": "outbound",
+      "content": "Hi Amara! Following up on the enterprise plan.",
+      "wa_number": "+254712000001",
+      "status": "sent",
+      "timestamp": "2026-05-16T13:52:33.767Z"
+    },
+    {
+      "id": 1778939553503,
+      "tenant_id": 1778939553455,
+      "contact_id": 1778939553458,
+      "direction": "inbound",
+      "content": "Hi! Yes, I'm interested. Can we schedule a call?",
+      "wa_number": "+254712000001",
+      "status": "received",
+      "timestamp": "2026-05-16T13:52:33.768Z"
+    },
+    {
+      "id": 1778939553504,
+      "tenant_id": 1778939553455,
+      "contact_id": 1778939553459,
+      "direction": "outbound",
+      "content": "Hi David, happy to arrange a demo!",
+      "wa_number": "+254721000002",
+      "status": "sent",
+      "timestamp": "2026-05-16T13:52:33.769Z"
+    }
+  ],
+  "whatsapp_numbers": [],
+  "ai_conversations": [
+    {
+      "id": 1778939553510,
+      "tenant_id": 1778939553455,
+      "user_id": 1778939553456,
+      "role": "user",
+      "content": "hello",
+      "created_at": "2026-05-16T13:54:04.392Z"
+    }
+  ],
+  "industry_data": [],
+  "forecast_snapshots": [
+    {
+      "id": 1778939553508,
+      "tenant_id": 1778939553455,
+      "period": "2025-H1",
+      "data": "[{\"month\":\"Jan\",\"actual\":28000,\"forecast\":30000},{\"month\":\"Feb\",\"actual\":35000,\"forecast\":37000},{\"month\":\"Mar\",\"actual\":42000,\"forecast\":44000},{\"month\":\"Apr\",\"actual\":51000,\"forecast\":53000},{\"month\":\"May\",\"actual\":0,\"forecast\":62000},{\"month\":\"Jun\",\"actual\":0,\"forecast\":70000}]",
+      "created_at": "2026-05-16T13:52:33.774Z"
+    }
+  ],
+  "branding": [
+    {
+      "id": 1778939553507,
+      "tenant_id": 1778939553455,
+      "app_name": "NexusCRM",
+      "logo_url": "",
+      "primary_color": "#3b82f6",
+      "accent_color": "#a855f7",
+      "custom_domain": "",
+      "favicon_url": "",
+      "tagline": "Relationships, Reimagined.",
+      "created_at": "2026-05-16T13:52:33.773Z"
+    }
+  ],
+  "i18n_keys": []
+}
