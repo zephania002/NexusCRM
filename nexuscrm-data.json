@@ -23,7 +23,7 @@
       "password": "$2a$10$H/tvNIhyGKXj..yfOIC9e.PjYHp9xSqZuzqLa4ntXccP0CbjtMXme",
       "role": "admin",
       "created_at": "2026-05-16T13:52:33.597Z",
-      "last_login": "2026-05-16T13:53:34.499Z"
+      "last_login": "2026-05-17T18:02:22.989Z"
     },
     {
       "id": 1778939553457,
@@ -33,7 +33,7 @@
       "password": "$2a$10$ERYCI9XYNVz93MJX5X78iupV2V8zo4VnZQ0oyyuA/.OUZtjvazkEG",
       "role": "user",
       "created_at": "2026-05-16T13:52:33.727Z",
-      "last_login": null
+      "last_login": "2026-05-17T17:14:40.680Z"
     }
   ],
   "contacts": [
@@ -240,6 +240,24 @@
       "action": "login",
       "details": "Logged in",
       "created_at": "2026-05-16T13:53:34.501Z"
+    },
+    {
+      "id": 1779038012814,
+      "tenant_id": 1778939553455,
+      "user_id": 1778939553457,
+      "contact_id": null,
+      "action": "login",
+      "details": "Logged in",
+      "created_at": "2026-05-17T17:14:40.682Z"
+    },
+    {
+      "id": 1779040915661,
+      "tenant_id": 1778939553455,
+      "user_id": 1778939553456,
+      "contact_id": null,
+      "action": "login",
+      "details": "Logged in",
+      "created_at": "2026-05-17T18:02:22.991Z"
     }
   ],
   "templates": [

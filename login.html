@@ -7,82 +7,449 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
   <style>
-    :root{--bg:#0b0d12;--surface:#13161e;--border:rgba(255,255,255,0.08);--text:#f0f2f7;--muted:#6b7585;--accent:#3b82f6;--error:#ef4444;}
-    *{box-sizing:border-box;margin:0;padding:0;}
-    body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;}
-    .bg-grid{position:fixed;inset:0;background-image:linear-gradient(rgba(59,130,246,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(59,130,246,0.04) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;}
-    .bg-glow{position:fixed;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(59,130,246,0.1) 0%,transparent 70%);top:-100px;left:-100px;pointer-events:none;animation:drift 12s ease-in-out infinite alternate;}
-    .bg-glow2{position:fixed;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(20,184,166,0.07) 0%,transparent 70%);bottom:-80px;right:-80px;pointer-events:none;animation:drift 16s ease-in-out infinite alternate-reverse;}
-    @keyframes drift{from{transform:translate(0,0)}to{transform:translate(40px,30px)}}
-    .card{position:relative;z-index:1;width:100%;max-width:420px;margin:20px;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:40px;box-shadow:0 24px 80px rgba(0,0,0,0.7);animation:slideUp .5s cubic-bezier(.4,0,.2,1) both;}
-    @keyframes slideUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-    .logo-row{display:flex;align-items:center;gap:12px;margin-bottom:32px;}
-    .logo-mark{width:40px;height:40px;background:var(--accent);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:22px;color:#fff;box-shadow:0 4px 20px rgba(59,130,246,0.4);}
-    .logo-text{font-size:18px;font-weight:600;letter-spacing:-.02em;}
-    .title{font-family:'DM Serif Display',serif;font-size:26px;font-weight:400;letter-spacing:-.02em;margin-bottom:6px;}
-    .sub{font-size:13px;color:var(--muted);margin-bottom:28px;}
-    .field{margin-bottom:16px;}
-    .field label{display:block;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:7px;}
-    .fw{position:relative;}
-    .fw svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);width:15px;height:15px;color:var(--muted);}
-    .fw input{width:100%;padding:11px 14px 11px 38px;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;outline:none;transition:border-color .15s;}
-    .fw input:focus{border-color:var(--accent);background:rgba(59,130,246,0.06);}
-    .fw input::placeholder{color:var(--muted);}
-    .show-pass{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:transparent;border:none;cursor:pointer;color:var(--muted);display:flex;align-items:center;padding:4px;}
-    .show-pass:hover{color:var(--text);}
-    .show-pass svg{width:15px;height:15px;}
-    .err{display:none;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);border-radius:8px;padding:10px 14px;font-size:13px;color:#fca5a5;margin-bottom:16px;}
-    .err.show{display:block;}
-    .btn{width:100%;padding:13px;background:var(--accent);color:#fff;border:none;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:opacity .15s;margin-top:6px;}
-    .btn:hover{opacity:.88;}
-    .btn:disabled{opacity:.5;cursor:not-allowed;}
-    .spin{width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;display:none;animation:spin .6s linear infinite;}
-    @keyframes spin{to{transform:rotate(360deg)}}
-    .footer{margin-top:24px;padding-top:20px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
-    .hint{font-size:12px;color:var(--muted);}
-    .hint b{color:#60a5fa;font-weight:500;}
-    .vtag{font-size:11px;color:var(--muted);background:rgba(255,255,255,0.04);border:1px solid var(--border);padding:3px 9px;border-radius:20px;}
+    :root {
+      --bg: #030712;
+      --surface: rgba(17, 24, 39, 0.7);
+      --border: rgba(255, 255, 255, 0.06);
+      --border-focus: rgba(59, 130, 246, 0.4);
+      --text: #f3f4f6;
+      --muted: #9ca3af;
+      --accent: #3b82f6;
+      --accent-glow: rgba(59, 130, 246, 0.15);
+      --error: #ef4444;
+    }
+    
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      perspective: 1000px;
+    }
+
+    /* Animated Ambient Engine */
+    #bg-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: auto;
+    }
+    
+    .bg-glow-radial {
+      position: fixed;
+      width: 800px;
+      height: 800px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 65%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(40px);
+    }
+
+    /* Glassmorphic Container Structure */
+    .card {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 410px;
+      margin: 20px;
+      background: var(--surface);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 44px 40px;
+      box-shadow: 0 30px 100px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      animation: cardAppear 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    @keyframes cardAppear {
+      from { opacity: 0; transform: translateY(30px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* Micro-interactions & Staggered Entrance */
+    .animate-item {
+      animation: itemFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    .del-1 { animation-delay: 0.1s; }
+    .del-2 { animation-delay: 0.18s; }
+    .del-3 { animation-delay: 0.26s; }
+    .del-4 { animation-delay: 0.34s; }
+    .del-5 { animation-delay: 0.42s; }
+
+    @keyframes itemFade {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Identity Elements */
+    .logo-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 36px;
+    }
+    
+    .logo-mark {
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      border-radius: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Serif Display', serif;
+      font-size: 20px;
+      color: #fff;
+      position: relative;
+      box-shadow: 0 0 25px rgba(59, 130, 246, 0.35);
+    }
+    
+    .logo-mark::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 11px;
+      padding: 1px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+    }
+    
+    .logo-text {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -.02em;
+      background: linear-gradient(to right, #ffffff, #d1d5db);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 28px;
+      font-weight: 400;
+      letter-spacing: -.01em;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+    
+    .sub {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
+    /* Floating Interactive Inputs */
+    .field {
+      position: relative;
+      margin-bottom: 20px;
+    }
+    
+    .fw {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    
+    .fw svg.input-icon {
+      position: absolute;
+      left: 14px;
+      width: 16px;
+      height: 16px;
+      color: var(--muted);
+      transition: color 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+    
+    .fw input {
+      width: 100%;
+      padding: 16px 42px 16px 42px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      outline: none;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .fw input:focus {
+      border-color: var(--border-focus);
+      background: rgba(59, 130, 246, 0.02);
+      box-shadow: 0 0 0 4px var(--accent-glow);
+    }
+    
+    /* Reveal Password Configuration */
+    .show-pass {
+      position: absolute;
+      right: 14px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      padding: 6px;
+      border-radius: 6px;
+      transition: color 0.2s, background-color 0.2s;
+    }
+    
+    .show-pass:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.05);
+    }
+    
+    .show-pass svg { width: 16px; height: 16px; }
+
+    /* Active State Icon Shifts */
+    .fw input:focus + svg.input-icon {
+      color: var(--accent);
+    }
+
+    /* Clean Failure Notifications */
+    .err {
+      display: none;
+      background: rgba(239, 68, 68, 0.07);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 13px;
+      color: #f87171;
+      margin-bottom: 20px;
+      animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+    }
+    
+    .err.show { display: block; }
+    
+    @keyframes shake {
+      10%, 90% { transform: translate3d(-1px, 0, 0); }
+      20%, 80% { transform: translate3d(2px, 0, 0); }
+      30%, 50%, 70% { transform: translate3d(-3px, 0, 0); }
+      40%, 60% { transform: translate3d(3px, 0, 0); }
+    }
+
+    /* Action Trigger Control */
+    .btn {
+      width: 100%;
+      padding: 15px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      margin-top: 10px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(59, 130, 246, 0.25);
+    }
+    
+    .btn:hover {
+      background: #2563eb;
+      box-shadow: 0 6px 24px rgba(59, 130, 246, 0.35);
+      transform: translateY(-1px);
+    }
+    
+    .btn:active {
+      transform: translateY(0);
+    }
+    
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    /* Linear Modern Loading Engine */
+    .spin {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 3px;
+      width: 100%;
+      background: linear-gradient(90deg, transparent, #fff, transparent);
+      display: none;
+      animation: lineLoad 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+    
+    @keyframes lineLoad {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    /* Semantic Footer Alignment */
+    .footer {
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .hint { font-size: 12px; color: var(--muted); }
+    .hint b { color: var(--accent); font-weight: 500; }
+    
+    .vtag {
+      font-size: 11px;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.02em;
+    }
   </style>
 </head>
 <body>
-<div class="bg-grid"></div>
-<div class="bg-glow"></div>
-<div class="bg-glow2"></div>
+
+<canvas id="bg-canvas"></canvas>
+<div class="bg-glow-radial"></div>
+
 <div class="card">
-  <div class="logo-row">
+  <div class="logo-row animate-item del-1">
     <div class="logo-mark">N</div>
     <div class="logo-text">NexusCRM</div>
   </div>
-  <h1 class="title">Welcome back.</h1>
-  <p class="sub">Sign in to your workspace</p>
+  
+  <h1 class="title animate-item del-2">Welcome back.</h1>
+  <p class="sub animate-item del-2">Sign in to your workspace</p>
+  
   <div class="err" id="err"></div>
-  <div class="field">
-    <label>Email</label>
+  
+  <div class="field animate-item del-3">
     <div class="fw">
-      <input type="email" id="email" placeholder="you@company.com" autocomplete="email"/>
-      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="16" height="12" rx="2"/><path d="M2 7l8 5 8-5"/></svg>
+      <input type="email" id="email" placeholder="Email address" autocomplete="email"/>
+      <svg class="input-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="16" height="12" rx="2"/><path d="M2 7l8 5 8-5"/></svg>
     </div>
   </div>
-  <div class="field">
-    <label>Password</label>
+  
+  <div class="field animate-item del-4">
     <div class="fw">
-      <input type="password" id="pass" placeholder="Your password" autocomplete="current-password"/>
-      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="8" width="14" height="10" rx="2"/><path d="M7 8V5a3 3 0 016 0v3"/></svg>
+      <input type="password" id="pass" placeholder="Password" autocomplete="current-password"/>
+      <svg class="input-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="8" width="14" height="10" rx="2"/><path d="M7 8V5a3 3 0 016 0v3"/></svg>
       <button class="show-pass" id="showPass" type="button">
         <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 10s3-6 9-6 9 6 9 6-3 6-9 6-9-6-9-6z"/><circle cx="10" cy="10" r="2.5"/></svg>
       </button>
     </div>
   </div>
-  <button class="btn" id="loginBtn">
+  
+  <button class="btn animate-item del-5" id="loginBtn">
     <span id="btnText">Sign In</span>
     <div class="spin" id="spin"></div>
   </button>
-  <div class="footer">
-    <div class="hint">Demo: <b>admin@nexuscrm.com</b></div>
-    <span class="vtag">v2.0 SaaS</span>
+  
+  <div class="footer animate-item del-5">
+    <div class="hint">Developer <b>Zephania Otieno</b></div>
+    <span class="vtag">v4.0 SaaS</span>
   </div>
 </div>
+
 <script>
+  // Interactive Constellation Background Logic
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
+  let points = [];
+  const maxPoints = 55;
+  const mouse = { x: null, y: null, radius: 140 };
+
+  function initCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    points = [];
+    for (let i = 0; i < maxPoints; i++) {
+      points.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        radius: Math.random() * 1.5 + 0.5
+      });
+    }
+  }
+
+  function animateCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    for (let i = 0; i < points.length; i++) {
+      let p = points[i];
+      p.x += p.vx;
+      p.y += p.vy;
+
+      if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+      if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(156, 163, 175, 0.15)';
+      ctx.fill();
+
+      // Mouse Proximity Calculations
+      if (mouse.x !== null) {
+        let dx = p.x - mouse.x;
+        let dy = p.y - mouse.y;
+        let dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < mouse.radius) {
+          let force = (mouse.radius - dist) / mouse.radius;
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(mouse.x, mouse.y);
+          ctx.strokeStyle = `rgba(59, 130, 246, ${force * 0.08})`;
+          ctx.lineWidth = 0.8;
+          ctx.stroke();
+        }
+      }
+
+      // Inter-point Network Matrix
+      for (let j = i + 1; j < points.length; j++) {
+        let p2 = points[j];
+        let dx = p.x - p2.x;
+        let dy = p.y - p2.y;
+        let dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < 110) {
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.strokeStyle = `rgba(59, 130, 246, ${(110 - dist) * 0.0008})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(animateCanvas);
+  }
+
+  window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
+  window.addEventListener('mouseout', () => { mouse.x = null; mouse.y = null; });
+  window.addEventListener('resize', initCanvas);
+  
+  initCanvas();
+  animateCanvas();
+
+  // Functional Execution Operations (Preserved Exactly)
   document.getElementById('showPass').onclick = () => {
     const i = document.getElementById('pass');
     i.type = i.type === 'password' ? 'text' : 'password';
